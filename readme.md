@@ -17,3 +17,5 @@
 ### This project will have a  4 layer architecture, <br /> 1.Data Layer (Models and Serialization) <br /> 2.Service Layer (Service and Business Logic) <br /> 3.Data Source (Data Retrieval and Storage) <br /> 4.Web Layer (Controllers and Rest Mappings) 
 
 ### @Repository --> Used to Identify the data source class which is used to get data from some where 
+
+### @Service --> Used to Identify a service class  
