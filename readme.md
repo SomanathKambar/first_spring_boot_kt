@@ -27,3 +27,4 @@
 ### F.I.R.S.T principle for test cases <br /> 1.F-Fast feedback loop, run often <br /> 2.I-Isolated -> Independent, arbitrary order <br /> 3.R-Repeatable -> Same Result each time, not flaky <br /> 4.S-Self Validating -> actual vs Expected result <br /> 5. T-Timely-> before or after moving to production
 
 ### @Qualifier ->  Used to specify which concrete implementation of an Interface is being used 
+### some Gradle commands <br /> 1.gradlew clean <br /> 2. gradlew build <br /> 3.gradlew bootbuildimage (need docker dependencies )

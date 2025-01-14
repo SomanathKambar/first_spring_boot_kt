@@ -37,7 +37,7 @@ class BankControllerTest {
                 .andExpect {
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
-                    jsonPath("$[0].accountNumber") { value("1234")}
+                    jsonPath("$[0].account_number") { value("1234")}
                 }
         }
     }
@@ -93,7 +93,7 @@ class BankControllerTest {
             }.andExpect {
                     status { isCreated() }
                     content { contentType(MediaType.APPLICATION_JSON)}
-                        jsonPath("$.accountNumber") { value(accountNumber)}
+                        jsonPath("$.account_number") { value(accountNumber)}
                 }
         }
 
@@ -141,7 +141,7 @@ class BankControllerTest {
                 .andExpect {
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
-                    jsonPath("$.accountNumber") { value(accountNumber)}
+                    jsonPath("$.account_number") { value(accountNumber)}
                     jsonPath("$.trust") {value(trust)}
                 }
         }
