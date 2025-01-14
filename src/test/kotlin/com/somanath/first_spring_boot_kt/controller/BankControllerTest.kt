@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
+import org.springframework.test.web.servlet.patch
 import org.springframework.test.web.servlet.post
 
 
@@ -119,4 +120,53 @@ class BankControllerTest {
         }
     }
 
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("Patch api/banks")
+    inner class PatchExistingBank{
+
+        @Test
+        fun `should update existing bank `() {
+            val accountNumber = "1234"
+            val trust = 2.5
+            val transactionFee = 13
+            val newBank = Bank(accountNumber, trust, transactionFee)
+            val patchRequest = mockMVC.patch(baseUrl){
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(newBank)
+            }
+
+            patchRequest.andDo {
+                print()
+            }.andExpect {
+                status { isOk() }
+            }
+            mockMVC.get("$baseUrl/${newBank.accountNumber}").andDo { print() }
+                .andExpect {
+                    status { isOk() }
+                    content { contentType(MediaType.APPLICATION_JSON) }
+                    jsonPath("$.accountNumber") { value(accountNumber)}
+                    jsonPath("$.trust") {value(trust)}
+                }
+        }
+    }
+
+    @Test
+    fun `should throw BAD Request if Bank doesn't exist `() {
+
+        val accountNumber = "invalid"
+        val trust = 2.1
+        val transactionFee = 11
+        val newBank = Bank(accountNumber, trust, transactionFee)
+        val patchRequest = mockMVC.patch(baseUrl){
+            contentType = MediaType.APPLICATION_JSON
+            content = objectMapper.writeValueAsString(newBank)
+        }
+
+        patchRequest.andDo {
+            print()
+        }.andExpect {
+            status { isNotFound() }
+        }
+    }
 }

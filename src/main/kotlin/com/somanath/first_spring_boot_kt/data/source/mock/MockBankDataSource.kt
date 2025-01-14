@@ -2,10 +2,7 @@ package com.somanath.first_spring_boot_kt.data.source.mock
 
 import com.somanath.first_spring_boot_kt.data.model.Bank
 import com.somanath.first_spring_boot_kt.data.source.BankDataSource
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Repository
-import org.springframework.web.bind.annotation.ExceptionHandler
 
 
 @Repository
@@ -28,5 +25,20 @@ class MockBankDataSource() : BankDataSource {
         }
         banks.add(bank)
         return bank
+    }
+
+    override fun updateBank(bank: Bank): Bank {
+        val existingBank = banks.firstOrNull(){it.accountNumber == bank.accountNumber}
+        if(existingBank == null) {
+            throw NoSuchElementException("the given account number ${bank.accountNumber} does not exist")
+        } else {
+            banks.forEach { if(it.accountNumber == bank.accountNumber) {
+                it.apply {
+                    trust = bank.trust
+                    transactionFee = bank.transactionFee
+                }
+            } }
+        }
+       return bank
     }
 }
