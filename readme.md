@@ -20,3 +20,6 @@
 
 ### @Service --> Used to Identify a service class 
 ### @SpringBootTest @AutoConfigureMockMvc for a test Class -> @SpringBootTest helps to provide spring application context <br /> @AutoConfigureMockMvc -> Provides MockMvc automatically when test runs 
+### @DirtiesContext -> Used to isolate test methods who may affect other test cases 
+
+### Basic Operation Annotations are 1.@GetMapping <br /> 2.@PostMapping <br /> 3.@PatchMapping,  <br /> 4.@DeleteMapping
