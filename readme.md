@@ -18,4 +18,5 @@
 
 ### @Repository --> Used to Identify the data source class which is used to get data from some where 
 
-### @Service --> Used to Identify a service class  
+### @Service --> Used to Identify a service class 
+### @SpringBootTest @AutoConfigureMockMvc for a test Class -> @SpringBootTest helps to provide spring application context <br /> @AutoConfigureMockMvc -> Provides MockMvc automatically when test runs 
