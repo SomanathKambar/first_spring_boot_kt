@@ -4,6 +4,7 @@ import com.somanath.first_spring_boot_kt.data.model.Bank
 import com.somanath.first_spring_boot_kt.data.service.BankService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -44,5 +45,12 @@ class BankController(private val service :BankService) {
     @ResponseStatus(HttpStatus.OK)
     fun updateBank(@RequestBody bank: Bank) : Bank {
         return service.updateBank(bank)
+    }
+
+
+    @DeleteMapping("/{accountNumber}")
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteBank(@PathVariable accountNumber: String) {
+        return service.deleteBank(accountNumber)
     }
 }
