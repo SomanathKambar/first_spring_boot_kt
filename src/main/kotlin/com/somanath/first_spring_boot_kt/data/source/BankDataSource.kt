@@ -4,4 +4,5 @@ import com.somanath.first_spring_boot_kt.data.model.Bank
 
 interface BankDataSource {
     fun retrieveBanks():Collection<Bank>
+    fun retrieveBank(accountNumber: String): Bank
 }
