@@ -2,10 +2,12 @@ package com.somanath.first_spring_boot_kt.data.service
 
 import com.somanath.first_spring_boot_kt.data.model.Bank
 import com.somanath.first_spring_boot_kt.data.source.BankDataSource
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 
 @Service
-class BankService(private val dataSource: BankDataSource) {
+class BankService @Autowired constructor(@Qualifier("mock") private val dataSource: BankDataSource) {
 
     fun getBanks() = dataSource.retrieveBanks()
     fun getBank(accountNumber: String): Bank {

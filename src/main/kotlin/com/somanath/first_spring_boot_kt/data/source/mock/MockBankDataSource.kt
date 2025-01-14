@@ -5,7 +5,7 @@ import com.somanath.first_spring_boot_kt.data.source.BankDataSource
 import org.springframework.stereotype.Repository
 
 
-@Repository
+@Repository("mock")
 class MockBankDataSource() : BankDataSource {
 
     private val banks = mutableListOf(Bank(accountNumber = "1234", trust = 2.0, transactionFee = 1),
